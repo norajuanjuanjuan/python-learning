@@ -103,3 +103,54 @@ def f(x,y):
 def prod(L):
     return reduce(f,L) 
 prod([3,5,7,9])
+
+# prime number
+def _odd_iter():
+    n=1
+    while True:
+        n=n+2
+        yield n
+
+def _not_divisible(n):
+    return lambda x:x%n>0
+
+def primes():
+    yield 2
+    it=_odd_iter()
+    while True:
+        n=next(it)
+        yield n
+        it=filter(_not_divisible(n),it)
+
+for n in primes():
+    if n<1000:
+        print(n)
+    else:
+        break
+
+def is_odd(n):
+    return n % 2==1
+
+list(filter(is_odd,range(1,15)))
+
+def not_empty(s):
+    return s and s.strip()
+list(filter(not_empty,['A',' ','B','C ',None,'     ']))
+
+
+#circuit number
+def is_palindrome(n):
+    return int(str(n)[::-1])==n
+output = filter(is_palindrome,range(1,1000))
+print(list(output))
+
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+
+def by_name(t):
+    return t[0].lower
+L2=sorted(L,key=by_name)
+
+def by_score(t):
+    return t[1]
+
+
