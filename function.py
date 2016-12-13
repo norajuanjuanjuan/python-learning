@@ -53,7 +53,7 @@ def quadratic():
 
 quadratic()
 '''
-#函数的参数
+#函数的参数 没跑出结果；默认参数需指向不可变对象
 def cal(x,n=2):
     s = 1
     while n > 0:
@@ -61,5 +61,6 @@ def cal(x,n=2):
         s = s * x
     return s
 
-    
-cal(5,3)    
+cal(5,3)
+
+#可变参数    

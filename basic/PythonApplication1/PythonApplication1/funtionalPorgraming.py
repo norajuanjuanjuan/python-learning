@@ -153,4 +153,63 @@ L2=sorted(L,key=by_name)
 def by_score(t):
     return t[1]
 
+def count():
+    fs=[]
+    for i in range(1,4):
+        fs.append(lambda i=i:i*i)
+    return fs
+
+
+# decorator
+#>>> import functools
+#>>> def log(func):
+#...     @functools.wraps(func)
+#...     def wrapper(*args,**kw):
+#...         print('call %s ():' % func.__name__)
+#...         return func(*args,**kw)
+#...     return wrapper
+#... 
+#>>> @log
+#... def now():
+#...     print('2016-11-21')
+#... 
+#>>> now()
+#call now ():
+#2016-11-21
+#>>> now.__name__
+#'now'
+#>>> 
+
+#log with or without parameter in one function
+
+#import functools
+#>>> def log(text):
+#...     def decorate(func):
+#...         @functools.wraps(func)
+#...         def wrapper(*args, **kw):
+#...             output = text and ('%s %s()' % (text, func.__name__)) or ('call %s()' % func.__name__)
+#...             print(output)
+#...             return func(*args, **kw)
+#...         return wrapper
+#...     if hasattr(text,'__call__'):
+#...         func = text
+#...         text = None
+#...         return decorate(func)
+#...     else:
+#...         return decorate
+#... 
+#>>> @log
+#... def now():
+#...     print('2016-11-21')
+#... 
+#>>> now()
+#call now()
+#2016-11-21
+#>>> @log('execute')
+#... def future():
+#...     print('2016-11-22')
+#... 
+#>>> future()
+#execute future()
+#2016-11-22
 
